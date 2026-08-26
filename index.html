@@ -38,7 +38,7 @@ header::after {
 }
 .brand { display:flex; align-items:baseline; gap:14px; }
 .brand h1 { font-size:20px; letter-spacing:.14em; font-weight:800; }
-.brand h1 em { font-style:normal; color:var(--black); background:var(--ink); color:var(--paper); padding:0 6px; }
+.brand h1 em { font-style:normal; color:var(--paper); background:var(--ink); padding:0 6px; }
 .brand .en {
   font-size:10px; color:var(--dim); letter-spacing:.32em; text-transform:uppercase;
   font-family:"Courier New",monospace;
@@ -88,6 +88,31 @@ main {
   flex:1; width:100%; border:0; min-height:0;
   background:var(--paper);
 }
+.col { display:flex; flex-direction:column; gap:16px; min-height:0; }
+.col .mod { flex:1; }
+/* ===== 穿搭灵感轮播 ===== */
+.fits { position:relative; flex:1; overflow:hidden; background:var(--bg2, #ecece6); min-height:0; }
+.fits img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:top;
+  opacity:0; transition:opacity .5s;
+}
+.fits img.on { opacity:1; }
+.fits .fits-empty {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--dim); font-size:12px; font-family:"Courier New",monospace; letter-spacing:.1em;
+}
+.fits .cap {
+  position:absolute; left:0; right:0; bottom:0;
+  padding:14px 12px 8px;
+  background:linear-gradient(transparent, rgba(0,0,0,.72));
+  color:#fff; font-size:11px; font-family:"Courier New",monospace; letter-spacing:.08em;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.fits .cap .idx { color:#ddd; }
+.fits .dots { position:absolute; top:8px; right:10px; display:flex; gap:5px; }
+.fits .dots i { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.5); }
+.fits .dots i.on { background:#fff; }
 /* ===== 页脚 ===== */
 footer {
   padding:14px 28px 26px;
@@ -103,6 +128,8 @@ footer a:hover { color:var(--ink); }
 @media (max-width:820px) {
   main { grid-template-columns:1fr; }
   .mod { height:72vh; }
+  .col { flex-direction:column; }
+  .col .mod { height:72vh; }
   header { flex-direction:column; gap:12px; align-items:flex-start; padding:14px 16px; }
   main, footer { padding-left:16px; padding-right:16px; }
 }
@@ -113,7 +140,7 @@ footer a:hover { color:var(--ink); }
 <header>
   <div class="brand">
     <h1>LONELYY<em>DESK</em></h1>
-    <span class="en">My Workbench · v1.0</span>
+    <span class="en">My Workbench · v1.1</span>
   </div>
   <nav class="nav">
     <a class="on" href="#">工作台</a>
@@ -133,21 +160,90 @@ footer a:hover { color:var(--ink); }
     <iframe src="https://lonelyy-z.github.io/trend-radar/" title="潮流雷达" loading="lazy"></iframe>
   </section>
 
-  <section class="mod">
-    <div class="mod-head">
-      <span class="n">MODULE 02</span>
-      <span class="t">攒钱计划 · SAVINGS 86</span>
-      <span class="st">本地存档</span>
-      <a class="open" href="https://lonelyy-z.github.io/savings-86/" target="_blank">独立页 ↗</a>
-    </div>
-    <iframe src="https://lonelyy-z.github.io/savings-86/" title="攒钱计划" loading="lazy"></iframe>
-  </section>
+  <div class="col">
+    <section class="mod">
+      <div class="mod-head">
+        <span class="n">MODULE 02</span>
+        <span class="t">攒钱计划 · SAVINGS 86</span>
+        <span class="st">本地存档</span>
+        <a class="open" href="https://lonelyy-z.github.io/savings-86/" target="_blank">独立页 ↗</a>
+      </div>
+      <iframe src="https://lonelyy-z.github.io/savings-86/" title="攒钱计划" loading="lazy"></iframe>
+    </section>
+
+    <section class="mod">
+      <div class="mod-head">
+        <span class="n">MODULE 03</span>
+        <span class="t">穿搭灵感 · FIT INSPO</span>
+        <span class="st" id="fitsDate">每日6套</span>
+        <a class="open" href="https://v.douyin.com/" target="_blank">抖音 ↗</a>
+      </div>
+      <div class="fits" id="fits">
+        <div class="fits-empty" id="fitsEmpty">今日灵感加载中…</div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer>
   <span>LONELYY DESK · 数据与存档在各模块独立维护</span>
   <span><a href="https://github.com/lonelyy-z" target="_blank">github.com/lonelyy-z</a></span>
 </footer>
+
+<script>
+(function(){
+  var box = document.getElementById("fits");
+  var empty = document.getElementById("fitsEmpty");
+  var MANIFEST = "https://lonelyy-z.github.io/workbench/assets/outfits/manifest.json";
+  var idx = 0, timer = null;
+
+  function render(items, date){
+    if (empty) empty.remove();
+    var base = "https://lonelyy-z.github.io/workbench/assets/outfits/";
+    var caps = [
+      "FIT 01","FIT 02","FIT 03","FIT 04","FIT 05","FIT 06"
+    ];
+    items.forEach(function(u, i){
+      var img = document.createElement("img");
+      img.src = base + u;
+      img.alt = "穿搭灵感 " + (i+1);
+      img.onerror = function(){ img.style.display = "none"; };
+      if (i === 0) img.classList.add("on");
+      box.appendChild(img);
+    });
+    var cap = document.createElement("div");
+    cap.className = "cap";
+    cap.innerHTML = '<span>' + date + ' · 街头灵感</span><span class="idx">01 / ' + items.length + '</span>';
+    box.appendChild(cap);
+    var dots = document.createElement("div");
+    dots.className = "dots";
+    items.forEach(function(_, i){
+      var d = document.createElement("i");
+      if (i === 0) d.classList.add("on");
+      dots.appendChild(d);
+    });
+    box.appendChild(dots);
+    var capIdx = cap.querySelector(".idx");
+    var all = box.querySelectorAll("img");
+    timer = setInterval(function(){
+      all[idx].classList.remove("on");
+      idx = (idx + 1) % all.length;
+      all[idx].classList.add("on");
+      capIdx.textContent = String(idx + 1).padStart(2,"0") + " / " + all.length;
+      dots.querySelectorAll("i").forEach(function(d, j){ d.classList.toggle("on", j === idx); });
+    }, 5000);
+    document.getElementById("fitsDate").textContent = date + " · 每日6套";
+  }
+
+  fetch(MANIFEST)
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .then(function(m){
+      if (m && m.items && m.items.length) render(m.items, m.date);
+      else { empty.textContent = "今日灵感未更新"; }
+    })
+    .catch(function(){ empty.textContent = "今日灵感未更新"; });
+})();
+</script>
 
 </body>
 </html>
