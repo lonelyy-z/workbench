@@ -13,6 +13,7 @@
   --black:#000; --shadow:#e0e0da;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
 body {
   background:
     repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 1px, transparent 1px 32px),
@@ -21,6 +22,7 @@ body {
   color:var(--ink);
   font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
   font-size:14px; line-height:1.6;
+  display:flex; flex-direction:column; min-height:100vh;
 }
 /* ===== 顶栏 ===== */
 header {
@@ -52,7 +54,7 @@ header::after {
 .nav a.on { color:var(--paper); background:var(--ink); border-color:var(--ink); }
 /* ===== 主区 ===== */
 main {
-  display:grid;
+  flex:1; min-height:0; display:grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   gap:16px; padding:20px 28px 24px;
 }
@@ -83,15 +85,17 @@ main {
 }
 .mod-head .open:hover { background:var(--ink); color:var(--paper); }
 .mod iframe {
-  width:100%; border:0; height:62vh; min-height:420px;
+  flex:1; width:100%; border:0; min-height:0;
   background:var(--paper);
 }
-.col { display:flex; flex-direction:column; gap:16px; }
+.col { flex:1; min-height:0; display:flex; flex-direction:column; gap:16px; }
+.col .mod.sav { flex:1.05; }
+.col .mod.fit { flex:1.45; }
 /* ===== 穿搭灵感轮播 ===== */
-.fits { position:relative; width:100%; aspect-ratio:9/16; overflow:hidden; background:var(--bg2, #ecece6); }
+.fits { position:relative; flex:1; min-height:0; overflow:hidden; background:var(--hl); }
 .fits img {
   position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover;
+  object-fit:contain;
   opacity:0; transition:opacity .5s;
 }
 .fits img.on { opacity:1; }
@@ -124,8 +128,10 @@ footer a { color:var(--dim); }
 footer a:hover { color:var(--ink); }
 /* ===== 响应式 ===== */
 @media (max-width:820px) {
-  main { grid-template-columns:1fr; }
-  .mod iframe { height:58vh; min-height:380px; }
+  main { grid-template-columns:1fr; overflow:visible; }
+  .mod iframe { height:52vh; min-height:340px; flex:none; }
+  .col { flex:none; }
+  .col .mod.fit .fits { height:68vw; flex:none; }
   header { flex-direction:column; gap:12px; align-items:flex-start; padding:14px 16px; }
   main, footer { padding-left:16px; padding-right:16px; }
 }
@@ -157,7 +163,7 @@ footer a:hover { color:var(--ink); }
   </section>
 
   <div class="col">
-    <section class="mod">
+    <section class="mod sav">
       <div class="mod-head">
         <span class="n">MODULE 02</span>
         <span class="t">攒钱计划 · SAVINGS 86</span>
@@ -167,7 +173,7 @@ footer a:hover { color:var(--ink); }
       <iframe src="https://lonelyy-z.github.io/savings-86/" title="攒钱计划" loading="lazy"></iframe>
     </section>
 
-    <section class="mod">
+    <section class="mod fit">
       <div class="mod-head">
         <span class="n">MODULE 03</span>
         <span class="t">穿搭灵感 · FIT INSPO</span>
