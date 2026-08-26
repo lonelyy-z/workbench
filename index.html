@@ -55,7 +55,7 @@ header::after {
 /* ===== 主区 ===== */
 main {
   flex:1; min-height:0; display:grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.8fr) minmax(0, 2fr);
   grid-template-rows: minmax(0, 1fr);
   gap:16px; padding:20px 28px 24px;
 }
@@ -92,6 +92,44 @@ main {
 .col { flex:1; min-height:0; display:flex; flex-direction:column; gap:16px; }
 .col .mod.sav { flex:1.05; }
 .col .mod.fit { flex:1.45; }
+/* ===== Todolist ===== */
+.todo-body { flex:1; min-height:0; display:flex; flex-direction:column; padding:12px 14px; }
+.todo-input { display:flex; gap:8px; margin-bottom:10px; }
+.todo-input input {
+  flex:1; min-width:0; font-family:inherit; font-size:13px;
+  background:var(--paper); color:var(--ink);
+  border:1px solid var(--ink); padding:8px 10px;
+  box-shadow:0 2px 0 var(--shadow);
+}
+.todo-input input:focus { outline:none; background:var(--card); }
+.todo-input button {
+  border:1px solid var(--ink); background:var(--ink); color:var(--paper);
+  font-size:16px; line-height:1; width:34px; cursor:pointer;
+  box-shadow:0 2px 0 var(--shadow); font-family:"Courier New",monospace;
+}
+.todo-input button:hover { background:var(--black); }
+.todo-list { flex:1; min-height:0; overflow-y:auto; list-style:none; }
+.todo-item {
+  display:flex; align-items:center; gap:9px;
+  padding:8px 2px; border-bottom:1px dashed var(--line);
+  font-size:13px;
+}
+.todo-item .cb {
+  flex-shrink:0; width:16px; height:16px;
+  border:1px solid var(--ink); background:var(--card);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:11px; color:var(--paper);
+}
+.todo-item .cb.on { background:var(--ink); }
+.todo-item .txt { flex:1; min-width:0; word-break:break-all; }
+.todo-item.done .txt { text-decoration:line-through; color:var(--dim); }
+.todo-item .del {
+  flex-shrink:0; border:none; background:none; cursor:pointer;
+  color:var(--dim); font-size:15px; line-height:1; padding:2px 4px;
+  font-family:"Courier New",monospace;
+}
+.todo-item .del:hover { color:var(--ink); }
+.todo-empty { color:var(--dim); font-size:12px; text-align:center; padding:18px 0; font-family:"Courier New",monospace; }
 /* ===== 穿搭灵感轮播 ===== */
 .fits { position:relative; flex:1; min-height:0; overflow:hidden; background:var(--hl); }
 .fits img {
@@ -142,6 +180,7 @@ footer a:hover { color:var(--ink); }
   body { height:auto; min-height:100vh; overflow:visible; }
   main { grid-template-columns:1fr; overflow:visible; }
   .mod iframe { height:52vh; min-height:340px; flex:none; }
+  .todo-mod { height:44vh; }
   .col { flex:none; }
   .col .mod.fit .fits { height:68vw; flex:none; }
   header { flex-direction:column; gap:12px; align-items:flex-start; padding:14px 16px; }
@@ -174,10 +213,25 @@ footer a:hover { color:var(--ink); }
     <iframe src="https://lonelyy-z.github.io/trend-radar/" title="潮流雷达" loading="lazy"></iframe>
   </section>
 
+  <section class="mod todo-mod">
+    <div class="mod-head">
+      <span class="n">MODULE 02</span>
+      <span class="t">任务清单 · TODO LIST</span>
+      <span class="st">本地存档</span>
+    </div>
+    <div class="todo-body">
+      <div class="todo-input">
+        <input id="todoInput" placeholder="添加任务，回车确认…" maxlength="60">
+        <button id="todoAdd" title="添加">+</button>
+      </div>
+      <ul class="todo-list" id="todoList"></ul>
+    </div>
+  </section>
+
   <div class="col">
     <section class="mod sav">
       <div class="mod-head">
-        <span class="n">MODULE 02</span>
+        <span class="n">MODULE 03</span>
         <span class="t">攒钱计划 · SAVINGS 86</span>
         <span class="st">本地存档</span>
         <a class="open" href="https://lonelyy-z.github.io/savings-86/" target="_blank">独立页 ↗</a>
@@ -187,7 +241,7 @@ footer a:hover { color:var(--ink); }
 
     <section class="mod fit">
       <div class="mod-head">
-        <span class="n">MODULE 03</span>
+        <span class="n">MODULE 04</span>
         <span class="t">穿搭灵感 · FIT INSPO</span>
         <span class="st" id="fitsDate">每日6套</span>
         <a class="open" href="https://www.xiaohongshu.com/" target="_blank">小红书 ↗</a>
@@ -212,6 +266,64 @@ footer a:hover { color:var(--ink); }
 </footer>
 
 <script>
+(function(){
+  /* ===== Todolist ===== */
+  var KEY = "workbench_todos";
+  var tList = document.getElementById("todoList");
+  var tInput = document.getElementById("todoInput");
+  var tAdd = document.getElementById("todoAdd");
+  function tLoad(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ return []; } }
+  function tSave(t){ localStorage.setItem(KEY, JSON.stringify(t)); }
+  function tRender(){
+    var todos = tLoad();
+    tList.innerHTML = "";
+    if (!todos.length){
+      var li = document.createElement("li");
+      li.className = "todo-empty";
+      li.textContent = "没有任务，添加一条吧";
+      tList.appendChild(li);
+      return;
+    }
+    todos.forEach(function(t, i){
+      var li = document.createElement("li");
+      li.className = "todo-item" + (t.done ? " done" : "");
+      var cb = document.createElement("span");
+      cb.className = "cb" + (t.done ? " on" : "");
+      cb.textContent = t.done ? "✓" : "";
+      cb.title = t.done ? "标记未完成" : "标记完成";
+      cb.onclick = function(){
+        todos[i].done = !todos[i].done;
+        tSave(todos); tRender();
+      };
+      var txt = document.createElement("span");
+      txt.className = "txt";
+      txt.textContent = t.text;
+      var del = document.createElement("button");
+      del.className = "del";
+      del.textContent = "×";
+      del.title = "删除";
+      del.onclick = function(){
+        todos.splice(i, 1);
+        tSave(todos); tRender();
+      };
+      li.appendChild(cb); li.appendChild(txt); li.appendChild(del);
+      tList.appendChild(li);
+    });
+  }
+  function tAddTodo(){
+    var v = tInput.value.trim();
+    if (!v) return;
+    var todos = tLoad();
+    todos.push({text: v, done: false});
+    tSave(todos);
+    tInput.value = "";
+    tRender();
+  }
+  tAdd.onclick = tAddTodo;
+  tInput.addEventListener("keydown", function(e){ if (e.key === "Enter") tAddTodo(); });
+  tRender();
+
+  /* ===== 穿搭灵感轮播 ===== */
 (function(){
   var box = document.getElementById("fits");
   var empty = document.getElementById("fitsEmpty");
@@ -267,6 +379,7 @@ footer a:hover { color:var(--ink); }
       else { empty.textContent = "今日灵感未更新"; }
     })
     .catch(function(){ empty.textContent = "今日灵感未更新"; });
+})();
 })();
 </script>
 
