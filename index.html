@@ -107,6 +107,16 @@ main {
 .fits .dots { position:absolute; top:8px; right:10px; display:flex; gap:5px; z-index:2; }
 .fits .dots i { width:6px; height:6px; border-radius:50%; background:rgba(20,20,20,.35); box-shadow:0 0 0 1px rgba(255,255,255,.5); }
 .fits .dots i.on { background:#141414; }
+.fits .nav-btn {
+  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+  width:30px; height:30px; border:1px solid rgba(255,255,255,.45);
+  background:rgba(20,20,20,.5); color:#fff;
+  font-size:12px; line-height:1; cursor:pointer;
+  font-family:"Courier New",monospace;
+}
+.fits .nav-btn:hover { background:rgba(20,20,20,.85); }
+.fits .nav-btn.prev { left:8px; }
+.fits .nav-btn.next { right:8px; }
 .mod-foot {
   display:flex; justify-content:space-between; align-items:center;
   padding:8px 14px;
@@ -184,6 +194,8 @@ footer a:hover { color:var(--ink); }
       </div>
       <div class="fits" id="fits">
         <div class="fits-empty" id="fitsEmpty">今日灵感加载中…</div>
+        <button class="nav-btn prev" id="fitPrev" title="上一张">◀</button>
+        <button class="nav-btn next" id="fitNext" title="下一张">▶</button>
         <div class="dots" id="fitsDots"></div>
       </div>
       <div class="mod-foot">
@@ -230,13 +242,20 @@ footer a:hover { color:var(--ink); }
     });
     var all = box.querySelectorAll("img");
     idxEl.textContent = "01 / " + all.length;
-    timer = setInterval(function(){
+    function show(i){
       all[idx].classList.remove("on");
-      idx = (idx + 1) % all.length;
+      idx = (i + all.length) % all.length;
       all[idx].classList.add("on");
       idxEl.textContent = String(idx + 1).padStart(2,"0") + " / " + all.length;
       dots.querySelectorAll("i").forEach(function(d, j){ d.classList.toggle("on", j === idx); });
-    }, 5000);
+    }
+    function restart(){
+      clearInterval(timer);
+      timer = setInterval(function(){ show(idx + 1); }, 5000);
+    }
+    document.getElementById("fitPrev").addEventListener("click", function(){ show(idx - 1); restart(); });
+    document.getElementById("fitNext").addEventListener("click", function(){ show(idx + 1); restart(); });
+    timer = setInterval(function(){ show(idx + 1); }, 5000);
     document.getElementById("fitsDate").textContent = date + " · 每日6套";
     tagEl.textContent = date + " · 街头灵感";
   }
