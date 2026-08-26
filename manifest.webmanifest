@@ -1,0 +1,16 @@
+{
+  "name": "LONELYY DESK 工作台",
+  "short_name": "LONELYY",
+  "description": "潮流雷达 · 任务清单 · 攒钱计划 · 穿搭灵感",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f6f2",
+  "theme_color": "#f6f6f2",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
