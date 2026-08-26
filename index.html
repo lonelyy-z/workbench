@@ -243,7 +243,7 @@ footer a:hover { color:var(--ink); }
       <div class="mod-head">
         <span class="n">MODULE 04</span>
         <span class="t">穿搭灵感 · FIT INSPO</span>
-        <span class="st" id="fitsDate">每日6套</span>
+        <span class="st" id="fitsDate">每日10套</span>
         <a class="open" href="https://www.xiaohongshu.com/" target="_blank">小红书 ↗</a>
       </div>
       <div class="fits" id="fits">
@@ -368,7 +368,7 @@ footer a:hover { color:var(--ink); }
     document.getElementById("fitPrev").addEventListener("click", function(){ show(idx - 1); restart(); });
     document.getElementById("fitNext").addEventListener("click", function(){ show(idx + 1); restart(); });
     timer = setInterval(function(){ show(idx + 1); }, 5000);
-    document.getElementById("fitsDate").textContent = date + " · 每日6套";
+    document.getElementById("fitsDate").textContent = date + " · 每日10套";
     tagEl.textContent = date + " · 街头灵感";
   }
 
