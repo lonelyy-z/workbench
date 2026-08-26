@@ -241,7 +241,7 @@ footer a:hover { color:var(--ink); }
     tagEl.textContent = date + " · 街头灵感";
   }
 
-  fetch(MANIFEST)
+  fetch(MANIFEST, {cache:"no-store"})
     .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
     .then(function(m){
       if (m && m.items && m.items.length) render(m.items, m.date);
