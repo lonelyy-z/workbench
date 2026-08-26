@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LONELYY DESK · 工作台</title>
+<style>
+/* ===== 设计令牌（与 trend-radar / 86-savings 统一） ===== */
+:root {
+  --paper:#f6f6f2; --card:#ffffff;
+  --ink:#141414; --dim:#8a8a86;
+  --line:#e2e2dc; --hl:#ecece6;
+  --black:#000; --shadow:#e0e0da;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body {
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0 1px, transparent 1px 32px),
+    var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  font-size:14px; line-height:1.6;
+  display:flex; flex-direction:column; min-height:100vh;
+}
+/* ===== 顶栏 ===== */
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 28px;
+  background:var(--card);
+  border-bottom:1px solid var(--ink);
+  position:relative;
+}
+header::after {
+  content:""; position:absolute; left:0; bottom:-4px; width:100%; height:2px;
+  background:var(--ink); opacity:.08;
+}
+.brand { display:flex; align-items:baseline; gap:14px; }
+.brand h1 { font-size:20px; letter-spacing:.14em; font-weight:800; }
+.brand h1 em { font-style:normal; color:var(--black); background:var(--ink); color:var(--paper); padding:0 6px; }
+.brand .en {
+  font-size:10px; color:var(--dim); letter-spacing:.32em; text-transform:uppercase;
+  font-family:"Courier New",monospace;
+}
+.nav { display:flex; gap:8px; }
+.nav a {
+  color:var(--dim); text-decoration:none; font-size:12px;
+  border:1px solid var(--ink); padding:5px 14px;
+  background:var(--card);
+  box-shadow:0 3px 0 var(--shadow);
+}
+.nav a:hover { color:var(--ink); border-color:var(--black); }
+.nav a.on { color:var(--paper); background:var(--ink); border-color:var(--ink); }
+/* ===== 主区 ===== */
+main {
+  flex:1; display:grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap:16px; padding:20px 28px 24px;
+}
+.mod {
+  display:flex; flex-direction:column; min-height:0;
+  background:var(--card);
+  border:1px solid var(--ink);
+  box-shadow:0 4px 0 var(--shadow);
+}
+.mod-head {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px;
+  border-bottom:1px solid var(--ink);
+  background:var(--hl);
+}
+.mod-head .n {
+  font-family:"Courier New",monospace; font-size:11px; color:var(--dim);
+  letter-spacing:.1em;
+}
+.mod-head .t { font-size:13px; letter-spacing:.18em; font-weight:700; }
+.mod-head .st { margin-left:auto; display:flex; align-items:center; gap:6px; font-size:11px; color:var(--dim); font-family:"Courier New",monospace; }
+.mod-head .st::before {
+  content:""; width:7px; height:7px; background:var(--ink); border-radius:50%;
+}
+.mod-head .open {
+  font-size:11px; color:var(--ink); text-decoration:none; letter-spacing:.1em;
+  border:1px solid var(--ink); padding:2px 10px; font-family:"Courier New",monospace;
+}
+.mod-head .open:hover { background:var(--ink); color:var(--paper); }
+.mod iframe {
+  flex:1; width:100%; border:0; min-height:0;
+  background:var(--paper);
+}
+/* ===== 页脚 ===== */
+footer {
+  padding:14px 28px 26px;
+  border-top:1px solid var(--line);
+  font-size:11px; color:var(--dim);
+  font-family:"Courier New",monospace;
+  letter-spacing:.08em;
+  display:flex; justify-content:space-between;
+}
+footer a { color:var(--dim); }
+footer a:hover { color:var(--ink); }
+/* ===== 响应式 ===== */
+@media (max-width:820px) {
+  main { grid-template-columns:1fr; }
+  .mod { height:72vh; }
+  header { flex-direction:column; gap:12px; align-items:flex-start; padding:14px 16px; }
+  main, footer { padding-left:16px; padding-right:16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>LONELYY<em>DESK</em></h1>
+    <span class="en">My Workbench · v1.0</span>
+  </div>
+  <nav class="nav">
+    <a class="on" href="#">工作台</a>
+    <a href="https://lonelyy-z.github.io/trend-radar/" target="_blank">潮流雷达 ↗</a>
+    <a href="https://lonelyy-z.github.io/savings-86/" target="_blank">攒钱计划 ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="mod">
+    <div class="mod-head">
+      <span class="n">MODULE 01</span>
+      <span class="t">潮流雷达 · TREND RADAR</span>
+      <span class="st">每日更新</span>
+      <a class="open" href="https://lonelyy-z.github.io/trend-radar/" target="_blank">独立页 ↗</a>
+    </div>
+    <iframe src="https://lonelyy-z.github.io/trend-radar/" title="潮流雷达" loading="lazy"></iframe>
+  </section>
+
+  <section class="mod">
+    <div class="mod-head">
+      <span class="n">MODULE 02</span>
+      <span class="t">攒钱计划 · SAVINGS 86</span>
+      <span class="st">本地存档</span>
+      <a class="open" href="https://lonelyy-z.github.io/savings-86/" target="_blank">独立页 ↗</a>
+    </div>
+    <iframe src="https://lonelyy-z.github.io/savings-86/" title="攒钱计划" loading="lazy"></iframe>
+  </section>
+</main>
+
+<footer>
+  <span>LONELYY DESK · 数据与存档在各模块独立维护</span>
+  <span><a href="https://github.com/lonelyy-z" target="_blank">github.com/lonelyy-z</a></span>
+</footer>
+
+</body>
+</html>
