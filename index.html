@@ -99,17 +99,18 @@ main {
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   color:var(--dim); font-size:12px; font-family:"Courier New",monospace; letter-spacing:.1em;
 }
-.fits .cap {
-  position:absolute; left:0; right:0; bottom:0;
-  padding:14px 12px 8px;
-  background:linear-gradient(transparent, rgba(0,0,0,.72));
-  color:#fff; font-size:11px; font-family:"Courier New",monospace; letter-spacing:.08em;
+.fits .dots { position:absolute; top:8px; right:10px; display:flex; gap:5px; z-index:2; }
+.fits .dots i { width:6px; height:6px; border-radius:50%; background:rgba(20,20,20,.35); box-shadow:0 0 0 1px rgba(255,255,255,.5); }
+.fits .dots i.on { background:#141414; }
+.mod-foot {
   display:flex; justify-content:space-between; align-items:center;
+  padding:8px 14px;
+  border-top:1px solid var(--ink);
+  background:var(--hl);
+  font-size:11px; color:var(--dim);
+  font-family:"Courier New",monospace; letter-spacing:.08em;
 }
-.fits .cap .idx { color:#ddd; }
-.fits .dots { position:absolute; top:8px; right:10px; display:flex; gap:5px; }
-.fits .dots i { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.5); }
-.fits .dots i.on { background:#fff; }
+.mod-foot .idx { color:var(--ink); }
 /* ===== 页脚 ===== */
 footer {
   padding:14px 28px 26px;
@@ -175,6 +176,11 @@ footer a:hover { color:var(--ink); }
       </div>
       <div class="fits" id="fits">
         <div class="fits-empty" id="fitsEmpty">今日灵感加载中…</div>
+        <div class="dots" id="fitsDots"></div>
+      </div>
+      <div class="mod-foot">
+        <span id="fitsTag">街头灵感</span>
+        <span class="idx" id="fitsIdx">— / 6</span>
       </div>
     </section>
   </div>
@@ -206,28 +212,25 @@ footer a:hover { color:var(--ink); }
       if (i === 0) img.classList.add("on");
       box.appendChild(img);
     });
-    var cap = document.createElement("div");
-    cap.className = "cap";
-    cap.innerHTML = '<span>' + date + ' · 街头灵感</span><span class="idx">01 / ' + items.length + '</span>';
-    box.appendChild(cap);
-    var dots = document.createElement("div");
-    dots.className = "dots";
+    var idxEl = document.getElementById("fitsIdx");
+    var tagEl = document.getElementById("fitsTag");
+    var dots = document.getElementById("fitsDots");
     items.forEach(function(_, i){
       var d = document.createElement("i");
       if (i === 0) d.classList.add("on");
       dots.appendChild(d);
     });
-    box.appendChild(dots);
-    var capIdx = cap.querySelector(".idx");
     var all = box.querySelectorAll("img");
+    idxEl.textContent = "01 / " + all.length;
     timer = setInterval(function(){
       all[idx].classList.remove("on");
       idx = (idx + 1) % all.length;
       all[idx].classList.add("on");
-      capIdx.textContent = String(idx + 1).padStart(2,"0") + " / " + all.length;
+      idxEl.textContent = String(idx + 1).padStart(2,"0") + " / " + all.length;
       dots.querySelectorAll("i").forEach(function(d, j){ d.classList.toggle("on", j === idx); });
     }, 5000);
     document.getElementById("fitsDate").textContent = date + " · 每日6套";
+    tagEl.textContent = date + " · 街头灵感";
   }
 
   fetch(MANIFEST)
