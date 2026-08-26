@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LONELYY DESK · 工作台</title>
+<meta name="theme-color" content="#f6f6f2">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 /* ===== 设计令牌（与 trend-radar / 86-savings 统一） ===== */
 :root {
@@ -193,10 +196,11 @@ footer a:hover { color:var(--ink); }
 <header>
   <div class="brand">
     <h1>LONELYY<em>DESK</em></h1>
-    <span class="en">My Workbench · v1.1</span>
+    <span class="en">My Workbench · v1.2</span>
   </div>
   <nav class="nav">
     <a class="on" href="#">工作台</a>
+    <a id="installBtn" href="#" style="display:none" title="安装为桌面应用">安装 ⤓</a>
     <a href="https://lonelyy-z.github.io/trend-radar/" target="_blank">潮流雷达 ↗</a>
     <a href="https://lonelyy-z.github.io/savings-86/" target="_blank">攒钱计划 ↗</a>
   </nav>
@@ -322,6 +326,27 @@ footer a:hover { color:var(--ink); }
   tAdd.onclick = tAddTodo;
   tInput.addEventListener("keydown", function(e){ if (e.key === "Enter") tAddTodo(); });
   tRender();
+
+  /* ===== PWA 安装 ===== */
+  var installBtn = document.getElementById("installBtn");
+  var installEvt = null;
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    installEvt = e;
+    if (installBtn) installBtn.style.display = "";
+  });
+  if (installBtn) installBtn.onclick = function(e){
+    e.preventDefault();
+    if (!installEvt) return;
+    installEvt.prompt();
+    installEvt.userChoice.then(function(){ installEvt = null; });
+  };
+  window.addEventListener("appinstalled", function(){
+    if (installBtn) installBtn.style.display = "none";
+  });
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  }
 
   /* ===== 穿搭灵感轮播 ===== */
 (function(){
