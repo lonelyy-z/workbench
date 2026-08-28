@@ -1,45 +1,45 @@
 {
- "date": "20260827",
+ "date": "20260828",
  "show": {
-  "brand": "alexander-wang",
+  "brand": "paolo-carzana",
   "season": "fall-2026-ready-to-wear",
   "season_zh": "2026秋冬成衣",
-  "title": "Alexander Wang Fall 2026 Ready-to-Wear Fashion Show | Vogue",
-  "source_url": "https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/alexander-wang/slideshow/collection"
+  "title": "Paolo Carzana Fall 2026 Ready-to-Wear Fashion Show | Vogue",
+  "source_url": "https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/paolo-carzana/slideshow/collection"
  },
- "look_no": 14,
- "image": "20260827_l14_7cc1c330.jpg",
+ "look_no": 6,
+ "image": "20260828_l06_dcc45f21.jpg",
  "analysis": {
-  "silhouette": "宽松垂坠的廓形，上衣宽大飘逸，下装阔腿流畅，整体呈现慵懒而富有雕塑感的线条。",
+  "silhouette": "宽松垂坠的非对称廓形，强调身体与衣物的动态关系",
   "pieces": [
-   "上衣：高领长袖宽松衬衫，采用缎面材质，前襟自然垂落，袖口微收，营造流动感。",
-   "下装：高腰阔腿长裤，同色系缎面面料，裤脚拖地，强调腿部延伸与空间感。",
-   "鞋履：黑色露趾平底凉鞋，简约设计，突出脚部线条，与整体轻盈感呼应。",
-   "配饰：无明显外戴配饰，仅以卷曲长发与裸妆强化自然气质，突显服装本身。",
-   "面料/结构细节：整体使用高光泽缎面面料，反光质感增强立体层次；肩线松弛、袖型夸张，形成不对称视觉张力。"
+   "上衣：粉色半透明长袖衬衫，前襟解扣并打结，露出腹部，背部大面积镂空设计",
+   "下装：米黄色宽腿束腰长裤，腰部系带自然垂落，裤脚松垮堆叠",
+   "鞋履：赤足，无鞋履设计强化原始感与身体本真",
+   "配饰：头戴浅色发带，简约而具有仪式感",
+   "面料/结构细节：轻盈纱质与棉麻混纺材质，强调褶皱、撕裂和不对称剪裁，突出手工痕迹与解构美学"
   ],
   "colors": [
    {
     "name": "主色",
-    "hex": "#f5f3f0"
+    "hex": "#f5e6c3"
    },
    {
     "name": "辅色",
-    "hex": "#d9d6d2"
+    "hex": "#ffcccc"
    },
    {
     "name": "点缀色",
-    "hex": "#000000"
+    "hex": "#8a6f4d"
    }
   ],
   "style_tags": [
-   "极简",
+   "解构主义",
    "中性风",
-   "未来感",
-   "高级感",
-   "慵懒廓形"
+   "极简",
+   "原始感",
+   "艺术装置感"
   ],
-  "notes": "此造型通过单一色调与高光泽面料打造纯净视觉，利用宽松剪裁打破传统比例，赋予穿着者自由姿态。背景中的金属装置艺术强化了秀场的前卫氛围，使服装成为空间的一部分。整体传达出一种冷静而自信的都市女性形象。",
-  "takeaway": "日常穿搭可借鉴其‘单色+宽松廓形’的组合，用垂坠面料提升质感，打造低调却有存在感的造型。"
+  "notes": "设计师通过衣物的破损与重组，营造出一种‘被时间侵蚀’的视觉效果。裸露的身体与残破布料形成张力，表达对传统男装结构的挑战。整体氛围如戏剧舞台，充满诗意与哲学意味。",
+  "takeaway": "日常穿搭可借鉴‘局部暴露+柔软垂坠面料’的组合，用不对称剪裁提升造型层次感"
  }
 }
