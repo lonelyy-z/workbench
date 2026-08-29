@@ -1,45 +1,45 @@
 {
- "date": "20260828",
+ "date": "20260829",
  "show": {
-  "brand": "paolo-carzana",
-  "season": "fall-2026-ready-to-wear",
-  "season_zh": "2026秋冬成衣",
-  "title": "Paolo Carzana Fall 2026 Ready-to-Wear Fashion Show | Vogue",
-  "source_url": "https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/paolo-carzana/slideshow/collection"
+  "brand": "bode",
+  "season": "spring-2027-ready-to-wear",
+  "season_zh": "2027春夏成衣",
+  "title": "Bode Spring 2027 Ready-to-Wear Fashion Show | Vogue",
+  "source_url": "https://www.vogue.com/fashion-shows/spring-2027-ready-to-wear/bode/slideshow/collection"
  },
- "look_no": 6,
- "image": "20260828_l06_dcc45f21.jpg",
+ "look_no": 46,
+ "image": "20260829_l46_1b1b69be.jpg",
  "analysis": {
-  "silhouette": "宽松垂坠的非对称廓形，强调身体与衣物的动态关系",
+  "silhouette": "上衣为收腰褶皱设计，下装为高腰直筒剪裁，整体呈现复古田园的女性化轮廓",
   "pieces": [
-   "上衣：粉色半透明长袖衬衫，前襟解扣并打结，露出腹部，背部大面积镂空设计",
-   "下装：米黄色宽腿束腰长裤，腰部系带自然垂落，裤脚松垮堆叠",
-   "鞋履：赤足，无鞋履设计强化原始感与身体本真",
-   "配饰：头戴浅色发带，简约而具有仪式感",
-   "面料/结构细节：轻盈纱质与棉麻混纺材质，强调褶皱、撕裂和不对称剪裁，突出手工痕迹与解构美学"
+   "上衣：红色刺绣拼接V领短款衬衫，带有蓝色滚边和胸前纽扣装饰，袖口与领部有几何图案刺绣",
+   "下装：深蓝色高腰牛仔裤，侧边配有多颗纽扣装饰，强调腰部线条",
+   "鞋履：未展示",
+   "配饰：无明显配饰，仅佩戴小巧耳环",
+   "面料/结构细节：上衣采用棉质或亚麻混纺材质，具有挺括感；刺绣工艺精细，展现手工质感；下装为经典丹宁布料，结构紧凑"
   ],
   "colors": [
    {
     "name": "主色",
-    "hex": "#f5e6c3"
+    "hex": "#e5284a"
    },
    {
     "name": "辅色",
-    "hex": "#ffcccc"
+    "hex": "#003366"
    },
    {
     "name": "点缀色",
-    "hex": "#8a6f4d"
+    "hex": "#ffffff"
    }
   ],
   "style_tags": [
-   "解构主义",
-   "中性风",
-   "极简",
-   "原始感",
-   "艺术装置感"
+   "复古",
+   "田园风",
+   "手工艺",
+   "女性化",
+   "民族元素"
   ],
-  "notes": "设计师通过衣物的破损与重组，营造出一种‘被时间侵蚀’的视觉效果。裸露的身体与残破布料形成张力，表达对传统男装结构的挑战。整体氛围如戏剧舞台，充满诗意与哲学意味。",
-  "takeaway": "日常穿搭可借鉴‘局部暴露+柔软垂坠面料’的组合，用不对称剪裁提升造型层次感"
+  "notes": "这件造型巧妙融合了传统刺绣工艺与现代剪裁，通过红蓝撞色增强视觉层次。V领与收腰设计突出女性曲线，同时保持舒适感。整体氛围温暖而怀旧，仿佛来自乡村夏日的静谧时光。",
+  "takeaway": "日常穿搭中可借鉴刺绣元素与撞色搭配，提升基础款服装的精致度与个性表达"
  }
 }
