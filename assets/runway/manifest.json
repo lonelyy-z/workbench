@@ -1,45 +1,45 @@
 {
- "date": "20260829",
+ "date": "20260830",
  "show": {
-  "brand": "bode",
-  "season": "spring-2027-ready-to-wear",
-  "season_zh": "2027春夏成衣",
-  "title": "Bode Spring 2027 Ready-to-Wear Fashion Show | Vogue",
-  "source_url": "https://www.vogue.com/fashion-shows/spring-2027-ready-to-wear/bode/slideshow/collection"
+  "brand": "romance-was-born",
+  "season": "spring-2026-ready-to-wear",
+  "season_zh": "2026春夏成衣",
+  "title": "Romance Was Born Spring 2026 Ready-to-Wear Fashion Show | Vogue",
+  "source_url": "https://www.vogue.com/fashion-shows/spring-2026-ready-to-wear/romance-was-born/slideshow/collection"
  },
- "look_no": 46,
- "image": "20260829_l46_1b1b69be.jpg",
+ "look_no": 6,
+ "image": "20260830_l06_aca9e40a.jpg",
  "analysis": {
-  "silhouette": "上衣为收腰褶皱设计，下装为高腰直筒剪裁，整体呈现复古田园的女性化轮廓",
+  "silhouette": "修身长裙廓形，贴合身形并强调垂直线条",
   "pieces": [
-   "上衣：红色刺绣拼接V领短款衬衫，带有蓝色滚边和胸前纽扣装饰，袖口与领部有几何图案刺绣",
-   "下装：深蓝色高腰牛仔裤，侧边配有多颗纽扣装饰，强调腰部线条",
-   "鞋履：未展示",
-   "配饰：无明显配饰，仅佩戴小巧耳环",
-   "面料/结构细节：上衣采用棉质或亚麻混纺材质，具有挺括感；刺绣工艺精细，展现手工质感；下装为经典丹宁布料，结构紧凑"
+   "上衣：无袖高领设计，融合中式立领元素与现代剪裁",
+   "下装：长裙一体式结构，从腰部自然垂坠至脚踝",
+   "鞋履：未完全展示，推测为低跟或平底鞋以配合整体优雅姿态",
+   "配饰：金色流苏耳环，与裙身刺绣呼应，增强华丽感",
+   "面料/结构细节：红色底布上覆盖金色花卉刺绣，采用亮面织物与金属丝线营造立体光泽"
   ],
   "colors": [
    {
     "name": "主色",
-    "hex": "#e5284a"
+    "hex": "#d43a4b"
    },
    {
     "name": "辅色",
-    "hex": "#003366"
+    "hex": "#d4af37"
    },
    {
     "name": "点缀色",
-    "hex": "#ffffff"
+    "hex": "#0066cc"
    }
   ],
   "style_tags": [
    "复古",
-   "田园风",
-   "手工艺",
-   "女性化",
-   "民族元素"
+   "华丽",
+   "东方主义",
+   "戏剧性",
+   "艺术感"
   ],
-  "notes": "这件造型巧妙融合了传统刺绣工艺与现代剪裁，通过红蓝撞色增强视觉层次。V领与收腰设计突出女性曲线，同时保持舒适感。整体氛围温暖而怀旧，仿佛来自乡村夏日的静谧时光。",
-  "takeaway": "日常穿搭中可借鉴刺绣元素与撞色搭配，提升基础款服装的精致度与个性表达"
+  "notes": "该造型融合了中国风元素与澳洲原住民艺术的视觉语言，通过夸张色彩与繁复图案打造沉浸式舞台氛围。金色刺绣在红底上形成强烈对比，象征奢华与庆典感。背景的彩色帷幕进一步强化了秀场的剧场美学。",
+  "takeaway": "日常穿搭中可借鉴将单一色彩作为主调，用金属质感或刺绣细节提升整体精致度"
  }
 }
